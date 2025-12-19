@@ -5,13 +5,13 @@ https://am820.wnyc.org/wnycam.aac?_gl=1*1mn8wdx*_gcl_au*MjM3MjE1OTM5LjE3NjYxNTEz
 https://fm939.wnyc.org/wnycfm.aac
 https://playerservices.streamtheworld.com/api/livestream-redirect/KGOUFM_64.mp3*/
 
-const char* stationPaths[] = {
+const char *stationPaths[] = {
   "http://www.byte.fm/stream/bytefm.m3u",
-  "https://npr-ice.streamguys1.com/live.mp3",  
+  "https://npr-ice.streamguys1.com/live.mp3",
   "https://playerservices.streamtheworld.com/api/livestream-redirect/WRJAFM.mp3",
   "https://fm939.wnyc.org/wnycfm.aac",
   "https://playerservices.streamtheworld.com/api/livestream-redirect/KGOUFM_64.mp3"
-  };  // Paths to the
+};  // Paths to the
 
 
 #include <WiFi.h>
@@ -48,12 +48,21 @@ void setup() {
   // Radio stream, e.g. Byte.fm
   //audio.connecttohost("http://www.byte.fm/stream/bytefm.m3u");
 
-  audio.connecttohost(stationPaths[4]); 
+  audio.connecttohost(stationPaths[3]);
 }
 
 void loop() {
+  int limit;
   audio.loop();
-  uint16_t 
+  uint16_t station = analogRead(A5);
+  for ( limit=0; limit < 500; limit += 20) {
+    if ((station > limit) && (station < limit + 5))
+      break;
+  }
+  //station /= 500;
+  //station *= 10;
+  Serial.println(limit);
+  delay(100);
 }
 
 // Print station info
