@@ -1,3 +1,19 @@
+/*https://npr-ice.streamguys1.com/live.mp3
+http://as-hls-ww-live.akamaized.net/pool_01505109/live/ww/bbc_radio_one/bbc_radio_one.isml/bbc_radio_one-audio%3d96000.norewind.m3u8
+https://playerservices.streamtheworld.com/api/livestream-redirect/WRJAFM.mp3
+https://am820.wnyc.org/wnycam.aac?_gl=1*1mn8wdx*_gcl_au*MjM3MjE1OTM5LjE3NjYxNTEzMDY.
+https://fm939.wnyc.org/wnycfm.aac
+https://playerservices.streamtheworld.com/api/livestream-redirect/KGOUFM_64.mp3*/
+
+const char* stationPaths[] = {
+  "http://www.byte.fm/stream/bytefm.m3u",
+  "https://npr-ice.streamguys1.com/live.mp3",  
+  "https://playerservices.streamtheworld.com/api/livestream-redirect/WRJAFM.mp3",
+  "https://fm939.wnyc.org/wnycfm.aac",
+  "https://playerservices.streamtheworld.com/api/livestream-redirect/KGOUFM_64.mp3"
+  };  // Paths to the
+
+
 #include <WiFi.h>
 #include "Arduino.h"
 #include "WiFi.h"
@@ -30,11 +46,14 @@ void setup() {
   // Volume (0-100)
   audio.setVolume(10);
   // Radio stream, e.g. Byte.fm
-  audio.connecttohost("http://www.byte.fm/stream/bytefm.m3u");
+  //audio.connecttohost("http://www.byte.fm/stream/bytefm.m3u");
+
+  audio.connecttohost(stationPaths[4]); 
 }
 
 void loop() {
   audio.loop();
+  uint16_t 
 }
 
 // Print station info
